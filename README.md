@@ -1,4 +1,3 @@
-```markdown
 # DataCraft
 
 DataCraft adalah CLI tool berbasis Python untuk membantu proses **data cleaning dan merging secara interaktif** pada dataset kecil hingga menengah.
@@ -115,4 +114,3 @@ DataCraft dibuat sebagai:
 ## Lisensi
 
 MIT License — bebas dipakai dan dimodifikasi.
-```
