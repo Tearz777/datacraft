@@ -122,7 +122,7 @@ DataCraft dibuat sebagai:
 
 
 
-![Main Menu](screenshot_main.jpg)
+![Main Menu](Screenshot_Main.jpg)
 
 
 
@@ -130,7 +130,7 @@ DataCraft dibuat sebagai:
 
 
 
-![Exit](screenshot_exit.jpg)
+![Exit](Screenshot_exit.jpg)
 
 ## Lisensi
 
