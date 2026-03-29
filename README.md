@@ -1,8 +1,6 @@
 # DataCraft
 
-DataCraft adalah CLI tool berbasis Python untuk membantu proses **data cleaning dan merging secara interaktif** pada dataset kecil hingga menengah.
-
-Dirancang untuk workflow praktis: membaca file, membersihkan data, menyamakan kolom, mengatasi inkonsistensi, lalu menggabungkan hasilnya.
+DataCraft adalah CLI tool berbasis Python untuk **EDA (Exploratory Data Analysis)** — fokus pada data cleaning, normalisasi, dan merge multi-file secara interaktif.
 
 ---
 
@@ -10,106 +8,129 @@ Dirancang untuk workflow praktis: membaca file, membersihkan data, menyamakan ko
 
 Pastikan Python 3.10+ sudah terinstall, lalu install dependencies:
 
-pip install pandas openpyxl
+```bash
+pip install pandas openpyxl pyarrow
+```
 
-Tidak perlu install package tambahan lain.
+> `pyarrow` hanya diperlukan jika ingin menggunakan format output Parquet.
 
 ---
 
 ## Fitur
 
-- Load multi-format:
-  - CSV
-  - JSON / GeoJSON
-  - Excel (XLSX, XLS)
-
-- Data cleaning:
-  - Bulk replace (exact match)
-  - Preview data (head & tail)
-
-- Resolusi inkonsistensi:
-  - Deteksi nilai yang tidak cocok antar file
-  - Rekomendasi berdasarkan kemiripan (difflib)
-
-- Rename kolom:
-  - Referensi antar file
-  - Bulk rename manual
-
-- Merge data:
-  - Outer join multi-file
-  - Auto-merge kolom identik
-
-- Output:
-  - CSV
-  - JSON
-  - Excel
-  - GeoJSON (preserve structure)
+- **Load multi-format:** CSV, JSON, GeoJSON, Excel (XLSX, XLS), TSV, JSONL, Parquet
+- **2 mode:** Power User (advanced) dan Basic (coming soon)
+- **Auto detect pattern:** deteksi inkonsistensi format antar file secara otomatis
+- **Data cleaning interaktif:**
+  - Exact match, contains, replace sebagian, regex pattern
+  - Preview head & tail sebelum dan sesudah cleaning
+  - Undo semua perubahan ke kondisi awal
+- **Rename kolom:** referensi antar file atau bulk rename manual
+- **Resolusi inkonsistensi:**
+  - Deteksi nilai tidak cocok antar file
+  - Kandidat berdasarkan kesamaan kolom lain + kedekatan nilai numerik
+  - Auto ganti, manual, skip, atau skip semua
+- **Pre-merge & post-merge cleaning loop**
+- **Merge data:** outer join multi-file, auto-merge kolom identik
+- **Tab autocomplete path** di terminal (Linux/Termux)
+- **Output:** CSV, TSV, JSON, JSONL, XLSX, GeoJSON, Parquet
 
 ---
 
 ## Cara Pakai
 
-Jalankan:
-
-```
-python dc.py
+```bash
+python dc_v2.py
 ```
 
 Lalu ikuti langkah interaktif:
-1. Masukkan file (satu atau lebih)
-2. Pilih kolom
-3. Cleaning (opsional)
-4. Resolve inkonsistensi
-5. Merge
-6. Simpan hasil
+1. Pilih mode (Power User / Basic)
+2. Masukkan file (1 atau lebih)
+3. Rename kolom jika perlu
+4. Auto detect pattern & transformasi
+5. Pre-merge cleaning + resolve inkonsistensi
+6. Merge
+7. Post-merge cleaning
+8. Simpan hasil
+
+---
+
+## Struktur Project
+
+```
+datacraft/
+├── dc_v2.py        ← entry point + UI logic
+└── core/
+    ├── io.py       ← read/save file
+    ├── cleaning.py ← bulk rules, find_inconsistencies
+    ├── merge.py    ← find_common_columns, merge_multiple
+    ├── profiling.py← analyze_column, compare_and_suggest
+    └── utils.py    ← show_sample
+```
 
 ---
 
 ## Use Case
 
-Tool ini cocok untuk:
-- Menggabungkan data dari beberapa sumber
-- Membersihkan data yang tidak konsisten
-- Menyamakan format kolom sebelum merge
-- Mengurangi pekerjaan manual di spreadsheet
+- Menggabungkan data dari beberapa sumber berbeda format
+- Membersihkan data yang inkonsisten sebelum analisis
+- Normalisasi format kolom (kode wilayah, nama, dll)
+- Alternatif ringan dari cleaning manual di Excel
 
 ---
 
 ## Batasan
 
-- Dirancang untuk dataset kecil–menengah (± ratusan hingga ribuan baris)
-- Masih berbasis input interaktif (belum fully automated)
-- Cleaning masih berbasis rule manual (belum pattern engine)
-- Tidak semua kasus transformasi kompleks bisa ditangani
+- Dirancang untuk dataset kecil–menengah (ratusan hingga puluhan ribu baris)
+- Basic mode belum diimplementasi
+- Undo hanya tersedia untuk undo all (belum per-step)
+- Tab autocomplete hanya works di Linux/Termux
 
 ---
 
 ## Status
 
-> ⚠️ v1.0 — Work in Progress. Masih ada bug yang diketahui.
+> ⚠️ v2.0 — Work in Progress. Masih ada bug yang diketahui.
 > Kontribusi dan feedback welcome.
 
 ---
 
 ## Roadmap
 
-- [ ] Transform session (format kode, case conversion)
-- [ ] Rename kolom interaktif
+- [ ] Basic mode
 - [ ] Feature engineering (kalkulasi, gabung kolom)
 - [ ] Statistik dasar & missing values detection
 - [ ] Visualisasi CLI
 - [ ] Config file per project
+- [ ] v2.5: Refactor — `dc.py` sebagai entry point murni, logic ke `core/modes/`
+- [ ] v3.0: Web interface
 
 ---
 
 ## Tujuan
 
 DataCraft dibuat sebagai:
-- Tool praktis untuk workflow pribadi
+- Tool praktis untuk workflow EDA pribadi
 - Alternatif ringan dari cleaning manual di Excel
-- Eksperimen dalam membangun CLI data tool
+- Stepping stone menuju Web ERP
 
 ---
+
+## Preview
+
+**Main menu:**
+
+
+
+![Main Menu](screenshot_main.jpg)
+
+
+
+**Exit:**
+
+
+
+![Exit](screenshot_exit.jpg)
 
 ## Lisensi
 
