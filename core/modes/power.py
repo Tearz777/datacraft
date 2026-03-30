@@ -150,8 +150,8 @@ def rename_columns_session(dfs: list, metas: list) -> list:
         all_cols = []
         for df in dfs:
           all_cols.extend(df.columns)
-          counts = Counter(all_cols)
-          common = sorted([col for col, count in counts.items() if count >= 2])
+        counts = Counter(all_cols)
+        common = sorted([col for col, count in counts.items() if count >= 2])
 
         if common:
             print(f"\n  ✅ Kolom yang sama ditemukan: {common}")
@@ -543,7 +543,7 @@ def run_power_mode():
               break
         except :
               pass
-              print("  ❌ Input tidak valid.")
+        print("  ❌ Input tidak valid.")
 
     path = input("  Lokasi output (tanpa ekstensi): ").strip()
     if not path:
@@ -551,7 +551,7 @@ def run_power_mode():
     else:
       path = path.rstrip('.')  # jaga-jaga
       path = f"{path}.{fmt}"
-      meta = next((m for m in metas if m.get('is_geojson')), None)
+    meta = next((m for m in metas if m.get('is_geojson')), None)
     if fmt == 'geojson' and not meta:
       print("\n  ⚠️ Tidak ada sumber GeoJSON.")
     else:
