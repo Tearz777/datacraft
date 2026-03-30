@@ -1,10 +1,10 @@
-DataCraft
+# DataCraft
 
-DataCraft adalah CLI tool berbasis Python untuk EDA (Exploratory Data Analysis) — fokus pada data cleaning, normalisasi, dan merge multi-file secara interaktif.
+# DataCraft adalah CLI tool berbasis Python untuk EDA (Exploratory Data Analysis) — fokus pada data cleaning, normalisasi, dan merge multi-file secara interaktif.
 
 ---
 
-Instalasi
+## Instalasi
 
 Pastikan Python 3.10+ sudah terinstall, lalu install dependencies:
 
@@ -14,7 +14,7 @@ pip install pandas openpyxl pyarrow
 
 ---
 
-Fitur
+## Fitur
 
 - Load multi-format: CSV, JSON, GeoJSON, Excel (XLSX, XLS), TSV, JSONL, Parquet
 - 2 mode:
@@ -41,7 +41,7 @@ Fitur
 
 ---
 
-Cara Pakai
+## Cara Pakai
 
 python dc_v2.5.py
 
@@ -57,8 +57,8 @@ Flow umum:
 
 ---
 
-Struktur Project
-
+## Struktur Project
+```
 datacraft/
 ├── dc_v2.5.py
 └── core/
@@ -72,10 +72,10 @@ datacraft/
     └── modes/
         ├── power.py
         └── basic.py
-
+```
 ---
 
-Use Case
+## Use Case
 
 - Menggabungkan data dari berbagai sumber
 - Membersihkan data sebelum analisis
@@ -84,7 +84,7 @@ Use Case
 
 ---
 
-Batasan
+## Batasan
 
 - Optimal untuk dataset kecil–menengah
 - Merge masih berbasis single key per proses
@@ -92,14 +92,14 @@ Batasan
 
 ---
 
-Status
+## Status
 
 «⚠️ v2.5 — Refactor & Stability Update
 Struktur sudah modular, fitur utama stabil, masih ada ruang pengembangan.»
 
 ---
 
-Roadmap
+## Roadmap
 
 - [ ] Multi-key merge (chained / graph-based)
 - [ ] Smart key suggestion
@@ -111,7 +111,7 @@ Roadmap
 
 ---
 
-Tujuan
+## Tujuan
 
 DataCraft dibuat sebagai:
 
